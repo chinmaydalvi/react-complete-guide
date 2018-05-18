@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classes from './App.css';
-import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
   state = {
@@ -32,42 +32,16 @@ class App extends Component {
     this.setState({ showPerson : !doesShow});
   }
 
-  personObjects = () =>{
-    return (
-      <div>
-        <Persons persons={this.state.persons} 
-                 onDelete={this.deletePersonHandler} 
-                 onChangeNameHandler={this.onChangeNameHandler} />
-        
-      </div>
-    )
-  }
-
   render(){
-    let persons =  null;
-    let buttonClass = '';
-    if(this.state.showPerson){
-      persons = this.personObjects();
-      buttonClass = classes.Red;
-    }
-
-    let assignedClasses = []
-    if(this.state.persons.length <= 2){
-      assignedClasses.push(classes.red);
-    }
-
-    if(this.state.persons.length <= 1){
-      assignedClasses.push(classes.bold);
-    }
-
     return (
-        <div className={classes.App}>
-          <h1>My First React App</h1>
-          <p className={assignedClasses.join(' ')}>This is really working</p>
-          <button className={buttonClass}
-                  onClick={this.toogleHandler.bind(this)}>Click Me</button>
-          {persons}
-        </div>
+      <div className={classes.App}>
+        <Cockpit clicked={this.toogleHandler}
+                 appClasses={classes}
+                 persons={this.state.persons}
+                 doesShowPerson={this.state.showPerson}
+                 deletePersonHandler={this.deletePersonHandler}
+                 onChangeNameHandler={this.onChangeNameHandler}/>
+      </div>
     );
   }
 }
