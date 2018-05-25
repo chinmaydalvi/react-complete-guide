@@ -3,14 +3,23 @@ import classes from './App.css';
 import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
-  state = {
-    persons: [
-      { name: 'Chinmay', age: 34, key:"6gcgd"},
-      { name: 'Rohan', age: 45, key:"667gsg"},
-      { name: 'Sachin', age: 23, key:"565fsgx"},
-    ],
-    showPerson: false,
-  };
+  constructor(){
+    
+    super();
+    console.log('Constractor');
+    this.state = {
+      persons: [
+        { name: 'Chinmay', age: 34, key:"6gcgd"},
+        { name: 'Rohan', age: 45, key:"667gsg"},
+        { name: 'Sachin', age: 23, key:"565fsgx"},
+      ],
+      showPerson: false,
+    };
+  }
+
+  componentWillMount(){
+    console.log('componentWillMount');
+  }
 
   deletePersonHandler = (index) =>{
     let ps = this.state.persons.slice();
